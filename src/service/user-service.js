@@ -19,6 +19,14 @@ const findById = async (id) => {
   return user;
 };
 
+const findByUsername = async (username) => {
+  const [error, user] = await to(userRepository.findByUsername(username));
+  if (error) {
+    throw clientError("Invalid request", 400);
+  }
+  return user;
+};
+
 const saveUser = async (user) => {
   const hashedPassword = await hashPassword(user.password);
   const newUser = {
@@ -45,4 +53,4 @@ const deleteUser = async (id) => {
   const [_error] = await to(userRepository.deleteById(id));
 };
 
-export default { findAll, findById, saveUser, updateUser, deleteUser };
+export default { findAll, findById, findByUsername, saveUser, updateUser, deleteUser };

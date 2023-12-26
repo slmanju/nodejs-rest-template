@@ -1,6 +1,6 @@
 export const errorLogger = (error, _req, _res, next) => {
   // eslint-disable-next-line no-console
-  console.error(`[ERROR] - ${error.message}`);
+  console.error(`[Error] - ${error.message}`);
   next(error);
 };
 

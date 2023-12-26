@@ -12,7 +12,7 @@ const validatePassword = async (password, userPassword) => {
 
 const generateToken = async (username, password) => {
   const user = await userService.findByUsername(username);
-  validatePassword(password, user.password);
+  await validatePassword(password, user.password);
   return signToken({ userId: user._id, role: user.role });
 };
 

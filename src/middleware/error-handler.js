@@ -1,12 +1,12 @@
-export const errorLogger = (err, _req, _res, next) => {
+export const errorLogger = (error, _req, _res, next) => {
   // eslint-disable-next-line no-console
-  console.error(err);
-  next(err);
+  console.error(`[ERROR] - ${error.message}`);
+  next(error);
 };
 
-export const errorHandler = (err, _req, res, _next) => {
-  const statusCode = err.status || 400;
-  const message = err.message || "Error";
+export const errorHandler = (error, _req, res, _next) => {
+  const statusCode = error.status || 400;
+  const message = error.message || "Error";
   res.status(statusCode).send({ statusCode, message, error: "Bad Request" });
 };
 
